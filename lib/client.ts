@@ -38,8 +38,7 @@ export class Client {
     const parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: '@',
-      isArray: (tagName, jPath, isLeafNode, isAttribute) =>
-        !isLeafNode && !isAttribute,
+      isArray: (tagName, jPath, isLeafNode, isAttribute) => !isAttribute,
     });
     const xml = parser.parse(res[`${name}Result`]);
     return xml[root] as T;
@@ -52,8 +51,8 @@ export class Client {
       input
     );
     return {
-      FirstDate: raw?.FirstDate,
-      LastDate: raw?.LastDate,
+      FirstDate: raw?.FirstDate[0],
+      LastDate: raw?.LastDate[0],
       Currencies: raw?.Currencies[0]?.Curr ?? [],
     };
   }
@@ -88,7 +87,7 @@ export class Client {
       'MNBStoredInterval',
       input
     );
-    const el = raw?.[0]?.DateInterval;
+    const el = raw?.[0]?.DateInterval?.[0];
     if (!el) {
       throw new Error('Invalid response');
     }

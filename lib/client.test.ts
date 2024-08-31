@@ -11,7 +11,7 @@ function expectCurrenciesCurrList(res: any) {
 describe('Client', () => {
   const now = new Date()
   const nowDate = getDatePart(now)
-  const nowDate_5 = getDatePart(subDateDays(now, 5))
+  const nowDate_1 = getDatePart(subDateDays(now, 1))
   it('should be defined', async () => {
     const client = await getClient();
     expect(client).toBeDefined();
@@ -53,7 +53,7 @@ describe('Client', () => {
   it('should return exchange rates', async () => {
     const client = await getClient();
     const res = await client.GetExchangeRates({
-      startDate: nowDate_5,
+      startDate: nowDate_1,
       endDate: nowDate,
       currencies: ['EUR', 'USD'],
     });

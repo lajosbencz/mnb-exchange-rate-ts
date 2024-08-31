@@ -27,8 +27,7 @@ export async function getClient(): Promise<Client> {
 }
 
 export class Client {
-  constructor(public readonly soap: SoapClient) {
-  }
+  constructor(public readonly soap: SoapClient) {}
 
   protected async fetch<T>(
     name: string,

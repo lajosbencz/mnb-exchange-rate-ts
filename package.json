@@ -14,7 +14,6 @@
     "fix": "gts fix",
     "clean": "gts clean",
     "compile": "tsc",
-    "publish": "yarn run compile && npm version patch && npm publish",
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
     "posttest": "yarn run lint"

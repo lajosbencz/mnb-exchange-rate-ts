@@ -11,3 +11,4 @@ export * from './response/current_exchange_rates';
 export * from './response/date_interval';
 export * from './response/exchange_rates';
 export * from './response/info';
+export * from './util';

@@ -1,4 +1,5 @@
 import {getClient} from './client';
+import {getDatePart, subDateDays} from "./util";
 
 function expectCurrenciesCurrList(res: any) {
   expect(res.Currencies).toBeDefined();
@@ -8,6 +9,9 @@ function expectCurrenciesCurrList(res: any) {
 }
 
 describe('Client', () => {
+  const now = new Date()
+  const nowDate = getDatePart(now)
+  const nowDate_5 = getDatePart(subDateDays(now, 5))
   it('should be defined', async () => {
     const client = await getClient();
     expect(client).toBeDefined();
@@ -48,16 +52,9 @@ describe('Client', () => {
   }, 20000);
   it('should return exchange rates', async () => {
     const client = await getClient();
-    const now = new Date();
-    const startDate = new Date(new Date().setDate(now.getDate() - 5))
-      .toISOString()
-      .split('T')[0];
-    const endDate = new Date(new Date().setDate(now.getDate() - 0))
-      .toISOString()
-      .split('T')[0];
     const res = await client.GetExchangeRates({
-      startDate,
-      endDate,
+      startDate: nowDate_5,
+      endDate: nowDate,
       currencies: ['EUR', 'USD'],
     });
     expect(res).toBeDefined();

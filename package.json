@@ -1,5 +1,6 @@
 {
   "name": "mnb-exchange-rate",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "build/index.js",
   "engines": {
@@ -28,6 +29,5 @@
   "dependencies": {
     "fast-xml-parser": "^4.4.1",
     "soap": "^1.1.2"
-  },
-  "version": "0.0.1"
+  }
 }

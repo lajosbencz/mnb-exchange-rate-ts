@@ -120,6 +120,11 @@ export class Client {
   async GetExchangeRates(
     input: GetExchangeRatesRequest
   ): Promise<GetExchangeRatesResponse> {
+    if (input.startDate === input.endDate) {
+      throw new Error(
+        'Invalid logic: startDate and doneDate cannot be the same'
+      );
+    }
     const raw = await this.fetch<any>('GetExchangeRates', 'MNBExchangeRates', {
       startDate: input.startDate,
       endDate: input.endDate,
@@ -128,8 +133,14 @@ export class Client {
     const r: GetExchangeRatesResponse = {};
     if (raw) {
       raw.forEach((n: any) => {
+        if (!n.Day) {
+          return;
+        }
         n.Day.forEach((dn: any) => {
           r[dn['@date']] = {};
+          if (!dn.Rate) {
+            return;
+          }
           dn.Rate.forEach((rn: any) => {
             r[dn['@date']][rn['@curr']] =
               parseFloat(rn['#text']) / parseFloat(rn['@unit']);

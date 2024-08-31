@@ -1,5 +1,5 @@
 import {getClient} from './client';
-import {getDatePart, subDateDays} from "./util";
+import {getDatePart, subDateDays} from './util';
 
 function expectCurrenciesCurrList(res: any) {
   expect(res.Currencies).toBeDefined();
@@ -9,9 +9,9 @@ function expectCurrenciesCurrList(res: any) {
 }
 
 describe('Client', () => {
-  const now = new Date()
-  const nowDate = getDatePart(now)
-  const nowDate_1 = getDatePart(subDateDays(now, 1))
+  const now = new Date();
+  const nowDate = getDatePart(now);
+  const nowDate_1 = getDatePart(subDateDays(now, 1));
   it('should be defined', async () => {
     const client = await getClient();
     expect(client).toBeDefined();

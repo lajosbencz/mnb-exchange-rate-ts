@@ -1,0 +1,32 @@
+{
+  "name": "mnb-exchange-rate",
+  "license": "MIT",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "npx tsc -w",
+    "test": "jest",
+    "lint": "gts lint",
+    "fix": "gts fix",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "20.12.7",
+    "gts": "^5.3.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.1.6"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.4.1",
+    "soap": "^1.1.2"
+  }
+}

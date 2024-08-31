@@ -111,14 +111,12 @@ export class Client {
     if (!el) {
       throw new Error('Invalid response');
     }
-    return {
-      [el['@date']]: Object.fromEntries(
-        el.Rate?.map((e: any) => [
-          e['@curr'],
-          parseFloat(e['#text']) / parseFloat(e['@unit']),
-        ])
-      ),
-    };
+    return Object.fromEntries(
+      el.Rate?.map((e: any) => [
+        e['@curr'],
+        parseFloat(e['#text']) / parseFloat(e['@unit']),
+      ])
+    );
   }
 
   async GetExchangeRates(

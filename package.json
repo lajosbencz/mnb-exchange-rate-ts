@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "engines": {
     "node": ">=18"
   },

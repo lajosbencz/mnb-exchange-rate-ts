@@ -27,7 +27,8 @@ export async function getClient(): Promise<Client> {
 }
 
 export class Client {
-  constructor(public readonly soap: SoapClient) {}
+  constructor(public readonly soap: SoapClient) {
+  }
 
   protected async fetch<T>(
     name: string,
@@ -129,15 +130,17 @@ export class Client {
       currencyNames: input.currencies.join(','),
     });
     const r: GetExchangeRatesResponse = {};
-    raw?.forEach((n: any) => {
-      n.Day?.forEach((dn: any) => {
-        r[dn['@date']] = {};
-        dn.Rate?.forEach((rn: any) => {
-          r[dn['@date']][rn['@curr']] =
-            parseFloat(rn['#text']) / parseFloat(rn['@unit']);
+    if (raw) {
+      raw.forEach((n: any) => {
+        n.Day.forEach((dn: any) => {
+          r[dn['@date']] = {};
+          dn.Rate.forEach((rn: any) => {
+            r[dn['@date']][rn['@curr']] =
+              parseFloat(rn['#text']) / parseFloat(rn['@unit']);
+          });
         });
       });
-    });
+    }
     return r;
   }
 }

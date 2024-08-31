@@ -46,24 +46,24 @@ export class Client {
   }
 
   async GetInfo(input: GetInfoRequest = {}): Promise<GetInfoResponse> {
-    const [r] = await this.fetch<any>(
+    const [raw] = await this.fetch<any>(
       'GetInfo',
       'MNBExchangeRatesQueryValues',
       input
     );
     return {
-      FirstDate: r.FirstDate,
-      LastDate: r.LastDate,
-      Currencies: r.Currencies[0]?.Curr ?? [],
+      FirstDate: raw?.FirstDate,
+      LastDate: raw?.LastDate,
+      Currencies: raw?.Currencies[0]?.Curr ?? [],
     };
   }
 
   async GetCurrencies(
     input: GetCurrenciesRequest = {}
   ): Promise<GetCurrenciesResponse> {
-    const r = await this.fetch<any>('GetCurrencies', 'MNBCurrencies', input);
+    const raw = await this.fetch<any>('GetCurrencies', 'MNBCurrencies', input);
     return {
-      Currencies: r[0]?.Currencies?.[0]?.Curr ?? [],
+      Currencies: raw?.[0]?.Currencies?.[0]?.Curr ?? [],
     };
   }
 
@@ -73,7 +73,7 @@ export class Client {
     const raw = await this.fetch<any>('GetCurrencyUnits', 'MNBCurrencyUnits', {
       currencyNames: input.currencies.join(','),
     });
-    const entries = raw[0]?.Units?.[0]?.Unit?.map((e: any) => [
+    const entries = raw?.[0]?.Units?.[0]?.Unit?.map((e: any) => [
       e['@curr'],
       parseFloat(e['#text']),
     ]);
@@ -88,7 +88,7 @@ export class Client {
       'MNBStoredInterval',
       input
     );
-    const el = raw[0]?.DateInterval;
+    const el = raw?.[0]?.DateInterval;
     if (!el) {
       throw new Error('Invalid response');
     }
@@ -106,13 +106,13 @@ export class Client {
       'MNBCurrentExchangeRates',
       input
     );
-    const el = raw[0]?.Day?.[0];
+    const el = raw?.[0]?.Day?.[0];
     if (!el) {
       throw new Error('Invalid response');
     }
     return {
       [el['@date']]: Object.fromEntries(
-        el.Rate.map((e: any) => [
+        el.Rate?.map((e: any) => [
           e['@curr'],
           parseFloat(e['#text']) / parseFloat(e['@unit']),
         ])
@@ -129,10 +129,10 @@ export class Client {
       currencyNames: input.currencies.join(','),
     });
     const r: GetExchangeRatesResponse = {};
-    raw.forEach((n: any) => {
-      n.Day.forEach((dn: any) => {
+    raw?.forEach((n: any) => {
+      n.Day?.forEach((dn: any) => {
         r[dn['@date']] = {};
-        dn.Rate.forEach((rn: any) => {
+        dn.Rate?.forEach((rn: any) => {
           r[dn['@date']][rn['@curr']] =
             parseFloat(rn['#text']) / parseFloat(rn['@unit']);
         });

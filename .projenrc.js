@@ -37,7 +37,7 @@ const project = new typescript.TypeScriptProject({
   typescriptVersion: '~5.1.6',
 
   // Node.js requirements
-  minNodeVersion: '18.0.0',
+  minNodeVersion: '18.17.0',
   
   // Dependencies
   deps: [

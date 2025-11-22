@@ -15,7 +15,7 @@ describe('Util', () => {
     const datePart = getDatePart(date);
     expect(datePart).toEqual('2000-01-03');
   });
-  it('should parseCommaFloat', () => {;
+  it('should parseCommaFloat', () => {
     [
       ['1', 1],
       ['-1', -1],

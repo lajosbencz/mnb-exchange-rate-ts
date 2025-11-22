@@ -39,7 +39,7 @@ export class Client {
     const parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: '@',
-      isArray: (tagName, jPath, isLeafNode, isAttribute) => !isAttribute,
+      isArray: (_tagName, _jPath, _isLeafNode, isAttribute) => !isAttribute,
     });
     const xml = parser.parse(res[`${name}Result`]);
     return xml[root] as T;

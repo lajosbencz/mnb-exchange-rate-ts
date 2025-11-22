@@ -8,7 +8,7 @@ const project = new typescript.TypeScriptProject({
   defaultReleaseBranch: 'master',
   packageManager: NodePackageManager.YARN_CLASSIC,
   license: 'MIT',
-  majorVersion: 0,
+  majorVersion: 1,
   
   // TypeScript configuration
   tsconfig: {

@@ -92,10 +92,32 @@ const project = new typescript.TypeScriptProject({
   npmTokenSecret: "NPM_TOKEN",
   npmIgnoreOptions: {
     ignorePatterns: [
-      '/.github/',
-      '/test/',
       '**/*.test.ts',
+      '/test/',
       '/coverage/',
+      '/test-reports/',
+      'junit.xml',
+
+      '/dist/',
+      'tsconfig.tsbuildinfo',
+      '/lib/',
+      
+      '/tsconfig.json',
+      '/tsconfig.dev.json',
+      '/.projenrc.js',
+      '/.editorconfig',
+      '/.eslintignore',
+      '/.eslintrc.json',
+      '/.prettierrc.js',
+      
+      '/.vscode/',
+      '/.idea/',
+      '/.projen/',
+      '/.gitignore',
+      '/.gitattributes',
+      '/.github/',
+      '/.mergify.yml',
+      '/yarn.lock',
     ],
   },
   

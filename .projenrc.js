@@ -88,8 +88,8 @@ const project = new typescript.TypeScriptProject({
   npmAccess: NpmAccess.PUBLIC,
   npmProvenance: true,
   releaseEnvironment: 'pub',
-  npmTrustedPublishing: true,
-  // npmTokenSecret: "NPM_TOKEN",
+  // npmTrustedPublishing: true,
+  npmTokenSecret: "NPM_TOKEN",
   npmIgnoreOptions: {
     ignorePatterns: [
       '/.github/',

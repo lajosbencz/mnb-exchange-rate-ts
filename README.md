@@ -11,14 +11,37 @@ yarn add mnb-exchange-rate
 ## Usage
 
 ```js
-import {getClient} from 'mnb-exchange-rate'
+import {getClient} from 'mnb-exchange-rate';
 
-const client = await getClient()
+// client singleton
+const client = await getClient();
 
-const info = await client.GetInfo()
-const currencies = await client.GetCurrencies()
-const units = await client.GetCurrencyUnits({currencies: ['EUR', 'JPY']})
-const interval = await client.GetDateInterval()
-const rate_current = await client.GetCurrentExchangeRates()
-const rates = await client.GetExchangeRates({startDate: '2000-01-01', endDate: '2000-01-02', currencies: ['EUR']})
+// general info
+const info = await client.GetInfo();
+
+// available currencies
+const currencies = await client.GetCurrencies();
+
+// units used for per currency
+const units = await client.GetCurrencyUnits({currencies: ['EUR', 'JPY']});
+
+// range of historic data
+const interval = await client.GetDateInterval();
+
+// current exchange rate of all currencies
+const rate_current = await client.GetCurrentExchangeRates();
+
+// get exchange rate by interval and specific currencies
+const rates = await client.GetExchangeRates({
+  startDate: '2000-01-01',
+  endDate: '2000-01-02',
+  currencies: ['EUR'],
+});
+```
+
+## Escape hatch to [soap](https://www.npmjs.com/package/soap) library
+
+```js
+const client = await getClient();
+client.soap.addSoapHeader('X-Foo', 'bar');
 ```

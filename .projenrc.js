@@ -85,7 +85,7 @@ const project = new typescript.TypeScriptProject({
   // Enable GitHub Actions for publishing
   github: true,
   releaseToNpm: true,
-  npmRegistryUrl: 'https://registry.npmjs.org/',
+  npmRegistryUrl: 'https://registry.npmjs.org',
   npmAccess: NpmAccess.PUBLIC,
   npmProvenance: true,
   npmTrustedPublishing: true,

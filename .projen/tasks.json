@@ -133,7 +133,7 @@
       "description": "Install project dependencies and update lockfile (non-frozen)",
       "steps": [
         {
-          "exec": "npm install"
+          "exec": "yarn install --check-files"
         }
       ]
     },
@@ -142,7 +142,7 @@
       "description": "Install project dependencies using frozen lockfile",
       "steps": [
         {
-          "exec": "npm ci"
+          "exec": "yarn install --check-files --frozen-lockfile"
         }
       ]
     },
@@ -274,10 +274,10 @@
           "exec": "npx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/jest,jest,projen,ts-jest"
         },
         {
-          "exec": "npm install"
+          "exec": "yarn install --check-files"
         },
         {
-          "exec": "npm update @types/jest @types/node commit-and-tag-version constructs gts jest jest-junit projen ts-jest typescript fast-xml-parser soap"
+          "exec": "yarn upgrade @types/jest @types/node commit-and-tag-version constructs gts jest jest-junit projen ts-jest typescript fast-xml-parser soap"
         },
         {
           "exec": "npx projen"

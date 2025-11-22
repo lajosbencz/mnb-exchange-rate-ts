@@ -5,3 +5,10 @@ export function subDateDays(date: Date, subDays: number) {
 export function getDatePart(date: Date): string {
   return date.toISOString().split('T')[0];
 }
+
+export function parseCommaFloat(str: string): number {
+  if (typeof str === 'string') {
+    return parseFloat(str.replace(',', '.'));
+  }
+  return str;
+}

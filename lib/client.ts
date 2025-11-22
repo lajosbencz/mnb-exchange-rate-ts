@@ -5,6 +5,7 @@ import {GetInfoRequest} from './request/info';
 import {GetCurrenciesRequest} from './request/currencies';
 import {GetCurrenciesResponse} from './response/currencies';
 import {Request} from './request';
+import {parseCommaFloat} from './util';
 import {GetCurrencyUnitsRequest} from './request/currency_units';
 import {GetCurrencyUnitsResponse} from './response/currency_units';
 import {GetDateIntervalRequest} from './request/date_interval';
@@ -74,7 +75,7 @@ export class Client {
     });
     const entries = raw?.[0]?.Units?.[0]?.Unit?.map((e: any) => [
       e['@curr'],
-      parseFloat(e['#text']),
+      parseCommaFloat(e['#text']),
     ]);
     return Object.fromEntries(entries);
   }
@@ -112,7 +113,7 @@ export class Client {
     return Object.fromEntries(
       el.Rate?.map((e: any) => [
         e['@curr'],
-        parseFloat(e['#text']) / parseFloat(e['@unit']),
+        parseCommaFloat(e['#text']) / parseCommaFloat(e['@unit']),
       ])
     );
   }
@@ -143,7 +144,7 @@ export class Client {
           }
           dn.Rate.forEach((rn: any) => {
             r[dn['@date']][rn['@curr']] =
-              parseFloat(rn['#text']) / parseFloat(rn['@unit']);
+              parseCommaFloat(rn['#text']) / parseCommaFloat(rn['@unit']);
           });
         });
       });

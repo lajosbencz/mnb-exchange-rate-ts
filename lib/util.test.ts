@@ -1,4 +1,4 @@
-import {getDatePart, subDateDays} from './util';
+import {getDatePart, subDateDays, parseCommaFloat} from './util';
 
 describe('Util', () => {
   it('should subDateDays', () => {
@@ -14,5 +14,16 @@ describe('Util', () => {
     date.setFullYear(2000, 0, 3);
     const datePart = getDatePart(date);
     expect(datePart).toEqual('2000-01-03');
+  });
+  it('should parseCommaFloat', () => {;
+    [
+      ['1', 1],
+      ['-1', -1],
+      ['1.1', 1.1],
+      ['1,1', 1.1],
+      ['1-1', 1],
+    ].forEach(([value, expected]: any[]) => {
+      expect(parseCommaFloat(value)).toEqual(expected);
+    });
   });
 });

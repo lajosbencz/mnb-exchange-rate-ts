@@ -87,7 +87,9 @@ const project = new typescript.TypeScriptProject({
   npmRegistryUrl: 'https://registry.npmjs.org',
   npmAccess: NpmAccess.PUBLIC,
   npmProvenance: true,
-  npmTrustedPublishing: true,
+  releaseEnvironment: 'pub',
+  // npmTrustedPublishing: true,
+  npmTokenSecret: "NPM_TOKEN",
   npmIgnoreOptions: {
     ignorePatterns: [
       '/.github/',

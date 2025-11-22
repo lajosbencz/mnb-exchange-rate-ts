@@ -31,6 +31,7 @@ const project = new typescript.TypeScriptProject({
   // Source and build directories
   srcdir: 'lib',
   libdir: 'build',
+  sampleCode: false,
   
   // Entry points
   entrypoint: 'build/index.js',
@@ -91,6 +92,7 @@ const project = new typescript.TypeScriptProject({
     ignorePatterns: [
       '/.github/',
       '/test/',
+      '**/*.test.ts',
       '/coverage/',
     ],
   },

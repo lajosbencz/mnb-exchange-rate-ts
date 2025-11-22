@@ -32,7 +32,6 @@ jspm_packages/
 .idea/
 .vscode/
 node_modules/
-yarn.lock
 build/
 /test-reports/
 junit.xml

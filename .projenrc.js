@@ -6,7 +6,7 @@ const project = new typescript.TypeScriptProject({
   name: 'mnb-exchange-rate',
   description: 'TypeScript client for Hungarian National Bank (MNB) exchange rate API',
   defaultReleaseBranch: 'master',
-  packageManager: NodePackageManager.YARN_CLASSIC,
+  packageManager: NodePackageManager.NPM,
   license: 'MIT',
   majorVersion: 0,
   
@@ -78,7 +78,6 @@ const project = new typescript.TypeScriptProject({
     '.idea/',
     '.vscode/',
     'node_modules/',
-    'yarn.lock',
     'build/',
   ],
 
